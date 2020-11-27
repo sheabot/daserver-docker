@@ -1,0 +1,7 @@
+FROM sheabot/daserver-base:alpine
+
+RUN apk add --update --no-cache avahi
+
+EXPOSE 5353/udp
+
+ENTRYPOINT [ "avahi-daemon" ]
