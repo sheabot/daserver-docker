@@ -1,0 +1,18 @@
+FROM alpine:3.12
+
+RUN addgroup -g 1000 shea && \
+    addgroup -g 3000 dasd && \
+    addgroup -g 3001 dasdmaster && \
+    addgroup -g 3002 dasdnew && \
+    addgroup -g 3003 daserver && \
+    adduser -g shea -s /usr/sbin/nologin -G shea -D -H -u 1000 shea && \
+    addgroup shea dasd && \
+    addgroup shea dasdmaster && \
+    addgroup shea dasdnew && \
+    adduser -g dasd -s /usr/sbin/nologin -G dasd -D -H -u 3000 dasd && \
+    addgroup dasd dasdmaster && \
+    addgroup dasd dasdnew && \
+    adduser -g daserver -s /usr/sbin/nologin -G daserver -D -H -u 3003 daserver && \
+    addgroup daserver dasdnew
+
+CMD [ "/bin/sh" ]
