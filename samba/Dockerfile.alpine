@@ -1,0 +1,10 @@
+FROM sheabot/daserver-base:alpine
+
+RUN apk add --update --no-cache samba
+
+EXPOSE 137/udp 138/udp 139 445
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
