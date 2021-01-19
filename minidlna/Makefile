@@ -1,18 +1,10 @@
-.PHONY: all clean build push run-alpine run-test
-
 IMAGE := sheabot/daserver-minidlna
 
-all:
-	$(MAKE) build
+ALPINE := y
 
-clean:
-	docker rmi $(IMAGE):alpine || true
+include ../Makefile.target
 
-build:
-	docker build -f Dockerfile.alpine --tag $(IMAGE):alpine .
-
-push:
-	docker push $(IMAGE):alpine
+.PHONY: run-alpine run-test
 
 # NOTE: --net=host is required to advertise outside the container
 run-alpine: build

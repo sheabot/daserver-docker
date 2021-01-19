@@ -1,18 +1,10 @@
-.PHONY: all clean build push run-alpine run-test
-
 IMAGE := sheabot/daserver-samba
 
-all:
-	$(MAKE) build
+ALPINE := y
 
-clean:
-	docker rmi $(IMAGE):alpine || true
+include ../Makefile.target
 
-build:
-	docker build -f Dockerfile.alpine --tag $(IMAGE):alpine .
-
-push:
-	docker push $(IMAGE):alpine
+.PHONY: run-alpine run-test
 
 # TODO: Update path to private directory
 run-alpine: build

@@ -1,25 +1,14 @@
-.PHONY: all clean build push run-alpine run-ubuntu
-
 IMAGE := sheabot/daserver-base
 
-all:
-	$(MAKE) build
-	$(MAKE) push
+ALPINE := y
+UBUNTU := y
 
-clean:
-	docker rmi $(IMAGE):alpine || true
-	docker rmi $(IMAGE):ubuntu || true
+include ../Makefile.target
 
-build:
-	docker build -f Dockerfile.alpine --tag $(IMAGE):alpine .
-	docker build -f Dockerfile.ubuntu --tag $(IMAGE):ubuntu .
+.PHONY: run-alpine run-ubuntu
 
-push:
-	docker push sheabot/daserver-base:alpine
-	docker push sheabot/daserver-base:ubuntu
-
-run-alpine:
+run-alpine: build
 	docker run -it --rm $(IMAGE):alpine
 
-run-ubuntu:
+run-ubuntu: build
 	docker run -it --rm $(IMAGE):ubuntu
