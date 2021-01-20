@@ -21,7 +21,7 @@ run-alpine: build
 #
 # Set password:
 # 	echo password | tee - | pdbedit -a -u daserver
-# 	echo password | tee - | pdbedit -a -u shea
+# 	echo password | tee - | pdbedit -a -u sheabot
 #
 # View database:
 # 	pdbedit -Lw
