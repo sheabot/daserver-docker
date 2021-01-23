@@ -1,0 +1,8 @@
+FROM sheabot/daserver-base:alpine
+
+RUN apk add --update --no-cache sshfs
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
