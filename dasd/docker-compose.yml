@@ -4,7 +4,6 @@ services:
     image: sheabot/daserver-dasd:alpine
     container_name: daserver-dasd
     restart: on-failure
-    command: python /dasd/dasd --action start --cfg /dasd/dasd.cfg
     volumes:
       - ./dasd:/dasd:ro
       - ./ssh:/home/dasd/.ssh:ro
