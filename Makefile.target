@@ -15,10 +15,16 @@ all:
 
 build:
 	@if [ "$(ALPINE)" = y ]; then \
-		docker build -f Dockerfile.alpine --tag $(IMAGE):alpine .; \
+		docker build \
+			-f Dockerfile.alpine \
+			--pull \
+			--tag $(IMAGE):alpine .; \
 	fi
 	@if [ "$(UBUNTU)" = y ]; then \
-		docker build -f Dockerfile.ubuntu --tag $(IMAGE):ubuntu .; \
+		docker build \
+			-f Dockerfile.ubuntu \
+			--pull \
+			--tag $(IMAGE):ubuntu .; \
 	fi
 
 push: build
