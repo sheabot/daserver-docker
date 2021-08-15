@@ -1,2 +1,2 @@
 # daserver-docker
-Da Server docker images and config
+Da Server docker images

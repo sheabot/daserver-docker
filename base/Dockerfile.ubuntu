@@ -1,0 +1,12 @@
+FROM ubuntu:20.04
+
+RUN groupadd -g 1000 sheabot && \
+    groupadd -g 3000 dasd && \
+    groupadd -g 3001 dasdmain && \
+    groupadd -g 3002 dasdnew && \
+    groupadd -g 3003 daserver && \
+    useradd -M --no-user-group --shell /usr/sbin/nologin -u 1000 -g 1000 -G sheabot,dasd,dasdmain,dasdnew sheabot && \
+    useradd -M --no-user-group --shell /usr/sbin/nologin -u 3000 -g 3000 -G dasd,dasdmain,dasdnew dasd && \
+    useradd -M --no-user-group --shell /usr/sbin/nologin -u 3003 -g 3003 -G daserver,dasdnew daserver
+
+CMD [ "/bin/sh" ]

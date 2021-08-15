@@ -1,0 +1,9 @@
+FROM sheabot/daserver-base:alpine
+
+RUN apk add --update --no-cache minidlna
+
+EXPOSE 1900/udp 8200
+
+USER minidlna
+
+ENTRYPOINT [ "minidlnad", "-S" ]
