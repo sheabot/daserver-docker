@@ -1,0 +1,10 @@
+FROM sheabot/daserver-base:alpine
+
+RUN apk add --update --no-cache avahi
+
+EXPOSE 5353/udp
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]

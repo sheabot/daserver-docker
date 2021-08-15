@@ -1,0 +1,44 @@
+ifeq ($(IMAGE),)
+$(error Must define IMAGE)
+endif
+
+.PHONY: all build push clean
+
+ALPINE ?= n
+UBUNTU ?= n
+
+all:
+	@echo "IMAGE  = $(IMAGE)"
+	@echo "ALPINE = $(ALPINE)"
+	@echo "UBUNTU = $(UBUNTU)"
+	$(MAKE) build
+
+build:
+	@if [ "$(ALPINE)" = y ]; then \
+		docker build \
+			-f Dockerfile.alpine \
+			--pull \
+			--tag $(IMAGE):alpine .; \
+	fi
+	@if [ "$(UBUNTU)" = y ]; then \
+		docker build \
+			-f Dockerfile.ubuntu \
+			--pull \
+			--tag $(IMAGE):ubuntu .; \
+	fi
+
+push: build
+	@if [ "$(ALPINE)" = y ]; then \
+		docker push $(IMAGE):alpine; \
+	fi
+	@if [ "$(UBUNTU)" = y ]l then \
+		docker push $(IMAGE):ubuntu; \
+	fi
+
+clean:
+	@if [ "$(ALPINE)" = y ]; then \
+		docker rmi $(IMAGE):alpine || true; \
+	fi
+	@if [ "$(UBUNTU)" = y ]; then \
+		docker rmi $(IMAGE):ubuntu || true; \
+	fi

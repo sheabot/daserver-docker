@@ -1,0 +1,18 @@
+FROM alpine:3.13
+
+RUN addgroup -g 1000 sheabot && \
+    addgroup -g 3000 dasd && \
+    addgroup -g 3001 dasdmain && \
+    addgroup -g 3002 dasdnew && \
+    addgroup -g 3003 daserver && \
+    adduser -g sheabot -s /usr/sbin/nologin -G sheabot -D -H -u 1000 sheabot && \
+    addgroup sheabot dasd && \
+    addgroup sheabot dasdmain && \
+    addgroup sheabot dasdnew && \
+    adduser -g dasd -s /usr/sbin/nologin -G dasd -D -H -u 3000 dasd && \
+    addgroup dasd dasdmain && \
+    addgroup dasd dasdnew && \
+    adduser -g daserver -s /usr/sbin/nologin -G daserver -D -H -u 3003 daserver && \
+    addgroup daserver dasdnew
+
+CMD [ "/bin/sh" ]
