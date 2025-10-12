@@ -18,12 +18,14 @@ build:
 		docker build \
 			-f Dockerfile.alpine \
 			--pull \
+			--platform linux/amd64 \
 			--tag $(IMAGE):alpine .; \
 	fi
 	@if [ "$(UBUNTU)" = y ]; then \
 		docker build \
 			-f Dockerfile.ubuntu \
 			--pull \
+			--platform linux/amd64 \
 			--tag $(IMAGE):ubuntu .; \
 	fi
 
@@ -31,7 +33,7 @@ push: build
 	@if [ "$(ALPINE)" = y ]; then \
 		docker push $(IMAGE):alpine; \
 	fi
-	@if [ "$(UBUNTU)" = y ]l then \
+	@if [ "$(UBUNTU)" = y ]; then \
 		docker push $(IMAGE):ubuntu; \
 	fi
 
