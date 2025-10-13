@@ -5,19 +5,12 @@ RUN apk add --update --no-cache \
         libffi-dev \
         openssh \
         openssl-dev \
-        python2 \
-        python2-dev \
-        rsync \
-        unrar && \
-    python -m ensurepip && \
-    rm -rf /usr/lib/python*/ensurepip && \
-    pip install --upgrade pip setuptools && \
-    pip install \
-        paramiko \
-        psutil \
-        python-daemon==1.5.7 \
-        rarfile==3.1 && \
-    rm -rf /root/.cache
+        py3-paramiko \
+        py3-psutil \
+        py3-rarfile \
+        python3 \
+        python3-dev \
+        rsync
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
