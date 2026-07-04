@@ -5,6 +5,4 @@
 #       https://github.com/docker/cli/issues/1285
 chmod 0700 /var/lib/samba/private/msg.sock
 
-ionice -c 3 nmbd -D
-
-exec ionice -c 3 smbd -FS --no-process-group < /dev/null
+exec smbd --foreground --no-process-group < /dev/null
