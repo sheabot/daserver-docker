@@ -19,6 +19,7 @@ build:
 			-f Dockerfile.alpine \
 			--pull \
 			--platform linux/amd64 \
+			--progress=plain \
 			--tag $(IMAGE):alpine .; \
 	fi
 	@if [ "$(UBUNTU)" = y ]; then \
@@ -26,6 +27,7 @@ build:
 			-f Dockerfile.ubuntu \
 			--pull \
 			--platform linux/amd64 \
+			--progress=plain \
 			--tag $(IMAGE):ubuntu .; \
 	fi
 
