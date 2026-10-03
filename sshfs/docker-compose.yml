@@ -3,6 +3,7 @@ services:
   sshfs:
     image: sheabot/daserver-sshfs:alpine
     container_name: daserver-sshfs
+    init: true
     devices:
       - /dev/fuse:/dev/fuse
     cap_add:
